@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'https://deno.land/x/denodb/mod.ts';
+import { Model, DataTypes } from '../../deps.ts'
 
 class Config extends Model {
   static table = 'config';
