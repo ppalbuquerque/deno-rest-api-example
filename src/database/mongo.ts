@@ -1,21 +1,23 @@
-import { Database, MongoDBConnector } from 'https://deno.land/x/denodb/mod.ts';
+import { dotEnvConfig, Database, MongoDBConnector } from '../deps.ts'
 
-import Config from './models/Config.ts';
+import ConfigModel from './models/Config.ts';
+
+dotEnvConfig({ safe: true, export: true })
 
 const connector = new MongoDBConnector({
-  database: 'contab',
-  db: 'contab',
+  database: Deno.env.get('MONGODB_DB') || '',
+  db: Deno.env.get('MONGODB_DB') || '',
   tls: true,
   servers: [
     {
-      host: 'functional-contab-shard-00-01.oz2wt.mongodb.net',
+      host: Deno.env.get('MONGODB_HOST') || '',
       port: 27017
     }
   ],
   credential: {
-    username: 'contab_admin_db',
-    password: 'ZtlZqEjcGBfmDhVO',
-    db: 'contab',
+    username: Deno.env.get('MONGODB_USER') || '',
+    password: Deno.env.get('MONGODB_PASS') || '',
+    db: Deno.env.get('MONGODB_DB') || '',
     mechanism: 'SCRAM-SHA-1'
   }
 });
@@ -23,7 +25,7 @@ const connector = new MongoDBConnector({
 
 const db = new Database(connector);
 
-db.link([Config]);
+db.link([ConfigModel]);
 
 await db.sync();
 
