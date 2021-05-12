@@ -1,4 +1,4 @@
-import { RouterContext } from 'https://deno.land/x/oak/mod.ts';
+import { RouterContext } from '../deps.ts';
 
 import Config from '../database/models/Config.ts';
 

@@ -1,6 +1,7 @@
 import { dotEnvConfig, Database, MongoDBConnector } from '../deps.ts'
 
 import ConfigModel from './models/Config.ts';
+import EntryModel from './models/Entry.ts';
 
 dotEnvConfig({ safe: true, export: true })
 
@@ -25,7 +26,7 @@ const connector = new MongoDBConnector({
 
 const db = new Database(connector);
 
-db.link([ConfigModel]);
+db.link([ConfigModel, EntryModel]);
 
 await db.sync();
 

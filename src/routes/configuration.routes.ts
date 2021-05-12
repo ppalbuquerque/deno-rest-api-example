@@ -1,5 +1,5 @@
-import { Router } from 'https://deno.land/x/oak/mod.ts';
-import { getConfig } from '../controllers/Configs.ts';
+import { Router } from '../deps.ts';
+import { getConfig } from '../controllers/ConfigController.ts';
 
 const router = new Router({ prefix: '/config' });
 
